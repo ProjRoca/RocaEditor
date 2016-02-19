@@ -2,9 +2,10 @@
 
 declare -A modules
 modules=(
-    ["QRockyStyle"]="https://github.com/ProjRoca/QRockyStyle"
+    ["lib/QRockyStyle"]="https://github.com/ProjRoca/QRockyStyle"
 )
 
+set -e
 lastwd="$PWD"
 for module in "${!modules[@]}"
 do

@@ -43,6 +43,15 @@ TopPanel::TopPanel(QWidget *parent) :
     d->btn_save = new QRockyButton("Sav");
     d->btn_save->setCombineBorders(QRockyStyle::Combine_Left);
     d->btn_save->setMinMaxSize(qRound(2*em), qRound(2*em));
+    d->btu_cut = new QRockyButton("Cut");
+    d->btu_cut->setCombineBorders(QRockyStyle::Combine_Left);
+    d->btu_cut->setMinMaxSize(qRound(2*em), qRound(2*em));
+    d->btu_copy = new QRockyButton("Cpy");
+    d->btu_copy->setCombineBorders(QRockyStyle::Combine_Left);
+    d->btu_copy->setMinMaxSize(qRound(2*em), qRound(2*em));
+    d->btn_paste = new QRockyButton("Pst");
+    d->btn_paste->setCombineBorders(QRockyStyle::Combine_Left);
+    d->btn_paste->setMinMaxSize(qRound(2*em), qRound(2*em));
     d->btn_render = new QRockyButton("Rdr");
     d->btn_render->setCombineBorders(QRockyStyle::Combine_Right);
     d->btn_render->setMinMaxSize(qRound(2*em), qRound(2*em));

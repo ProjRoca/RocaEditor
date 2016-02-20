@@ -61,8 +61,8 @@ TopPanel::TopPanel(QWidget *parent) :
 
     d->transport = new QWidget;
     d->transport->setPalette(style()->standardPalette());
-    d->transport->setMinimumSize(qRound(16*em), qRound(4*em));
-    d->transport->setMaximumSize(qRound(16*em), qRound(4*em));
+    d->transport->setMinimumSize(qRound(16*em), qRound(3*em));
+    d->transport->setMaximumSize(qRound(16*em), qRound(3*em));
 
     d->btn_select = new QRockyButton(u8"\u2b09");
     d->btn_select->setCheckable(true);
@@ -147,7 +147,7 @@ void TopPanel::paintEvent(QPaintEvent *) {
     painter.setRenderHint(QPainter::Antialiasing);
     painter.setPen(QPen(Qt::white, em*5/32));
     painter.setBrush(QColor(0x5c, 0x85, 0x83));
-    painter.drawRoundedRect(QRectF(19*em, em/2, 16*em, 4*em), em/4, em/4);
+    painter.drawRoundedRect(QRectF(19*em, em, 16*em, 3*em), em/4, em/4);
 }
 
 }

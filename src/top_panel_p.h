@@ -32,28 +32,29 @@ class TopPanelPrivate {
         q(q) {
     }
 
-    QRockyButton *btn_new;
-    QRockyButton *btn_open;
-    QRockyButton *btn_save;
-
-    QRockyButton *btn_cut;
-    QRockyButton *btn_copy;
-    QRockyButton *btn_paste;
+    QRockyButton *btn_tracks;
 
     QRockyButton *btn_render;
     QRockyButton *btn_settings;
 
-    QWidget *playback_control;
+    QRockyButton *btn_begin;
+    QRockyButton *btn_prev;
+    QRockyButton *btn_play;
+    QRockyButton *btn_next;
+    QRockyButton *btn_end;
+
+    QWidget *transport;
 
     QRockyButton *btn_select;
     QRockyButton *btn_draw;
 
     QComboBox *cmb_quantize;
-    QComboBox *cmb_notelen;
 
     QRockyButton *btn_lyric;
     QRockyButton *btn_pitch;
     QRockyButton *btn_timing;
+
+    QRockyButton *btn_labels;
 };
 
 }

@@ -32,11 +32,13 @@ MainWindow::MainWindow(QWidget *parent) :
     d->top_panel = new TopPanel;
     d->main_splitter = new QSplitter;
     auto layout = new QVBoxLayout;
+    layout->setMargin(0);
+    layout->setSpacing(0);
     layout->addWidget(d->top_panel);
     layout->addWidget(d->main_splitter);
     d->center_widget->setLayout(layout);
-    setCentralWidget(d->center_widget);
-    adjustSize();
+    this->setCentralWidget(d->center_widget);
+    this->adjustSize();
 }
 
 MainWindow::~MainWindow() {

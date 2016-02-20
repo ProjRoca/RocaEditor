@@ -26,7 +26,7 @@ int main(int argc, char *argv[]) {
     app.setStyle(new QRockyStyle);
 
     RocaEdit::MainWindow w;
-    w.show();
+    w.showMaximized();
 
     return app.exec();
 }

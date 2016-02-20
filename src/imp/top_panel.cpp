@@ -83,6 +83,7 @@ TopPanel::TopPanel(QWidget *parent) :
     d->cmb_quantize = new QComboBox;
     d->cmb_quantize->addItem("1/16");
     d->cmb_quantize->setMinimumWidth(qRound(5*em));
+    d->cmb_quantize->setMaximumWidth(qRound(5*em));
     d->cmb_quantize->setMinimumHeight(qRound(2.5*em));
     d->cmb_quantize->setMaximumHeight(qRound(2.5*em));
 
@@ -104,34 +105,45 @@ TopPanel::TopPanel(QWidget *parent) :
     d->btn_labels->setCheckable(true);
     d->btn_labels->setMinMaxSize(qRound(2.5*em), qRound(2.5*em));
 
+    auto layout0 = new QHBoxLayout;
+    layout0->setMargin(qRound(em));
+    layout0->addWidget(d->btn_tracks);
+    layout0->addSpacing(qRound(em/2));
+    layout0->addWidget(d->btn_render);
+    layout0->addWidget(d->btn_settings);
+    layout0->addSpacing(qRound(em/2));
+    layout0->addWidget(d->btn_begin);
+    layout0->addWidget(d->btn_prev);
+    layout0->addWidget(d->btn_play);
+    layout0->addWidget(d->btn_next);
+    layout0->addWidget(d->btn_end);
+    layout0->addStretch();
+
+    auto layout1 = new QHBoxLayout;
+    layout1->addSpacing(qRound(em/4));
+    layout1->addWidget(d->transport);
+    layout1->addSpacing(qRound(em/4));
+
+    auto layout2 = new QHBoxLayout;
+    layout2->setMargin(qRound(em));
+    layout2->addStretch();
+    layout2->addWidget(d->btn_select);
+    layout2->addWidget(d->btn_draw);
+    layout2->addSpacing(qRound(em/2));
+    layout2->addWidget(d->cmb_quantize);
+    layout2->addSpacing(qRound(em/2));
+    layout2->addWidget(d->btn_lyric);
+    layout2->addWidget(d->btn_pitch);
+    layout2->addWidget(d->btn_timing);
+    layout2->addSpacing(qRound(em/2));
+    layout2->addWidget(d->btn_labels);
+
     auto layout = new QHBoxLayout;
     layout->setMargin(0);
     layout->setSpacing(0);
-    layout->addSpacing(qRound(em));
-    layout->addWidget(d->btn_tracks);
-    layout->addSpacing(qRound(em/2));
-    layout->addWidget(d->btn_render);
-    layout->addWidget(d->btn_settings);
-    layout->addSpacing(qRound(em/2));
-    layout->addWidget(d->btn_begin);
-    layout->addWidget(d->btn_prev);
-    layout->addWidget(d->btn_play);
-    layout->addWidget(d->btn_next);
-    layout->addWidget(d->btn_end);
-    layout->addStretch(0);
-    layout->addWidget(d->transport);
-    layout->addStretch(0);
-    layout->addWidget(d->btn_select);
-    layout->addWidget(d->btn_draw);
-    layout->addSpacing(qRound(em/2));
-    layout->addWidget(d->cmb_quantize);
-    layout->addSpacing(qRound(em/2));
-    layout->addWidget(d->btn_lyric);
-    layout->addWidget(d->btn_pitch);
-    layout->addWidget(d->btn_timing);
-    layout->addSpacing(qRound(em/2));
-    layout->addWidget(d->btn_labels);
-    layout->addSpacing(qRound(em));
+    layout->addLayout(layout0, 1);
+    layout->addLayout(layout1, 0);
+    layout->addLayout(layout2, 1);
     this->setLayout(layout);
 }
 

@@ -33,6 +33,7 @@ TopPanel::TopPanel(QWidget *parent) :
     palette.setColor(QPalette::Window, QColor(0x82, 0x8a, 0x8c));
     this->setPalette(palette);
     this->setMinimumWidth(qRound(64*em));
+    this->setMinimumHeight(qRound(5*em));
     this->setMaximumHeight(qRound(5*em));
 
     d->btn_tracks = new QRockyButton(u8"\u2261");
@@ -47,28 +48,21 @@ TopPanel::TopPanel(QWidget *parent) :
     d->btn_settings->setCombineBorders(QRockyStyle::Combine_Left);
     d->btn_settings->setMinMaxSize(qRound(2.5*em), qRound(2.5*em));
 
-    d->btn_begin = new QRockyButton(u8"\u23ee");
+    d->btn_begin = new QRockyButton(u8"\u23ea");
     d->btn_begin->setCombineBorders(QRockyStyle::Combine_Right);
     d->btn_begin->setMinMaxSize(qRound(2.5*em), qRound(2.5*em));
-    d->btn_prev = new QRockyButton(u8"\u23ea");
-    d->btn_prev->setCombineBorders(QRockyStyle::Combine_Left | QRockyStyle::Combine_Right);
-    d->btn_prev->setMinMaxSize(qRound(2.5*em), qRound(2.5*em));
     d->btn_play = new QRockyButton(u8"\u23f5");
     d->btn_play->setCheckable(true);
     d->btn_play->setCombineBorders(QRockyStyle::Combine_Left | QRockyStyle::Combine_Right);
     d->btn_play->setMinMaxSize(qRound(2.5*em), qRound(2.5*em));
-    d->btn_next = new QRockyButton(u8"\u23e9");
-    d->btn_next->setCombineBorders(QRockyStyle::Combine_Left | QRockyStyle::Combine_Right);
-    d->btn_next->setMinMaxSize(qRound(2.5*em), qRound(2.5*em));
-    d->btn_end = new QRockyButton(u8"\u23ed");
+    d->btn_end = new QRockyButton(u8"\u23e9");
     d->btn_end->setCombineBorders(QRockyStyle::Combine_Left);
     d->btn_end->setMinMaxSize(qRound(2.5*em), qRound(2.5*em));
 
     d->transport = new QWidget;
-    d->transport->setAutoFillBackground(true);
     d->transport->setPalette(style()->standardPalette());
-    d->transport->setMinimumSize(qRound(12*em), qRound(4*em));
-    d->transport->setMaximumSize(qRound(12*em), qRound(4*em));
+    d->transport->setMinimumSize(qRound(16*em), qRound(4*em));
+    d->transport->setMaximumSize(qRound(16*em), qRound(4*em));
 
     d->btn_select = new QRockyButton(u8"\u2b09");
     d->btn_select->setCheckable(true);
@@ -91,7 +85,7 @@ TopPanel::TopPanel(QWidget *parent) :
     d->btn_lyric->setCheckable(true);
     d->btn_lyric->setChecked(true);
     d->btn_lyric->setCombineBorders(QRockyStyle::Combine_Right);
-    d->btn_lyric->setMinMaxSize(qRound(4*em), qRound(2.5*em));
+    d->btn_lyric->setMinMaxSize(qRound(4.5*em), qRound(2.5*em));
     d->btn_pitch = new QRockyButton("Pitch");
     d->btn_pitch->setCheckable(true);
     d->btn_pitch->setCombineBorders(QRockyStyle::Combine_Left | QRockyStyle::Combine_Right);
@@ -99,51 +93,45 @@ TopPanel::TopPanel(QWidget *parent) :
     d->btn_timing = new QRockyButton("Timing");
     d->btn_timing->setCheckable(true);
     d->btn_timing->setCombineBorders(QRockyStyle::Combine_Left);
-    d->btn_timing->setMinMaxSize(qRound(4*em), qRound(2.5*em));
+    d->btn_timing->setMinMaxSize(qRound(4.5*em), qRound(2.5*em));
 
     d->btn_labels = new QRockyButton(u8"\U0001f516");
     d->btn_labels->setCheckable(true);
     d->btn_labels->setMinMaxSize(qRound(2.5*em), qRound(2.5*em));
 
     auto layout0 = new QHBoxLayout;
-    layout0->setMargin(qRound(em));
+    layout0->addSpacing(qRound(em/2));
     layout0->addWidget(d->btn_tracks);
     layout0->addSpacing(qRound(em/2));
     layout0->addWidget(d->btn_render);
     layout0->addWidget(d->btn_settings);
     layout0->addSpacing(qRound(em/2));
     layout0->addWidget(d->btn_begin);
-    layout0->addWidget(d->btn_prev);
     layout0->addWidget(d->btn_play);
-    layout0->addWidget(d->btn_next);
     layout0->addWidget(d->btn_end);
-    layout0->addStretch();
+    layout0->addSpacing(qRound(2*em));
+    layout0->addWidget(d->transport);
 
     auto layout1 = new QHBoxLayout;
-    layout1->addSpacing(qRound(em/4));
-    layout1->addWidget(d->transport);
-    layout1->addSpacing(qRound(em/4));
-
-    auto layout2 = new QHBoxLayout;
-    layout2->setMargin(qRound(em));
-    layout2->addStretch();
-    layout2->addWidget(d->btn_select);
-    layout2->addWidget(d->btn_draw);
-    layout2->addSpacing(qRound(em/2));
-    layout2->addWidget(d->cmb_quantize);
-    layout2->addSpacing(qRound(em/2));
-    layout2->addWidget(d->btn_lyric);
-    layout2->addWidget(d->btn_pitch);
-    layout2->addWidget(d->btn_timing);
-    layout2->addSpacing(qRound(em/2));
-    layout2->addWidget(d->btn_labels);
+    layout1->addSpacing(qRound(em/2));
+    layout1->addWidget(d->btn_select);
+    layout1->addWidget(d->btn_draw);
+    layout1->addSpacing(qRound(em/2));
+    layout1->addWidget(d->cmb_quantize);
+    layout1->addSpacing(qRound(em/2));
+    layout1->addWidget(d->btn_lyric);
+    layout1->addWidget(d->btn_pitch);
+    layout1->addWidget(d->btn_timing);
+    layout1->addSpacing(qRound(em/2));
+    layout1->addWidget(d->btn_labels);
+    layout1->addSpacing(qRound(em/2));
 
     auto layout = new QHBoxLayout;
     layout->setMargin(0);
     layout->setSpacing(0);
-    layout->addLayout(layout0, 1);
-    layout->addLayout(layout1, 0);
-    layout->addLayout(layout2, 1);
+    layout->addLayout(layout0);
+    layout->addStretch();
+    layout->addLayout(layout1);
     this->setLayout(layout);
 }
 
@@ -155,6 +143,11 @@ void TopPanel::paintEvent(QPaintEvent *) {
     option.initFrom(this);
     QPainter painter(this);
     QRockyStyle().drawPrimitive(QStyle::PE_Widget, &option, &painter, this);
+    auto em = QRockyStyle::em(this);
+    painter.setRenderHint(QPainter::Antialiasing);
+    painter.setPen(QPen(Qt::white, em*5/32));
+    painter.setBrush(QColor(0x5c, 0x85, 0x83));
+    painter.drawRoundedRect(QRectF(19*em, em/2, 16*em, 4*em), em/4, em/4);
 }
 
 }

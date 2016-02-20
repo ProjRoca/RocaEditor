@@ -38,9 +38,7 @@ class TopPanelPrivate {
     QRockyButton *btn_settings;
 
     QRockyButton *btn_begin;
-    QRockyButton *btn_prev;
     QRockyButton *btn_play;
-    QRockyButton *btn_next;
     QRockyButton *btn_end;
 
     QWidget *transport;

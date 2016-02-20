@@ -91,7 +91,7 @@ TopPanel::TopPanel(QWidget *parent) :
     auto layout = new QHBoxLayout;
     layout->setMargin(0);
     layout->setSpacing(0);
-    layout->addSpacing(qRound(em));
+    layout->addSpacing(qRound(2*em));
     layout->addWidget(d->btn_new);
     layout->addWidget(d->btn_open);
     layout->addWidget(d->btn_save);
@@ -109,13 +109,13 @@ TopPanel::TopPanel(QWidget *parent) :
     layout->addWidget(d->btn_draw);
     layout->addSpacing(qRound(em));
     layout->addWidget(d->cmb_quantize);
-    layout->addSpacing(qRound(em/2));
+    layout->addSpacing(qRound(em/4));
     layout->addWidget(d->cmb_notelen);
     layout->addSpacing(qRound(em));
     layout->addWidget(d->btn_lyric);
     layout->addWidget(d->btn_pitch);
     layout->addWidget(d->btn_timing);
-    layout->addSpacing(qRound(em));
+    layout->addSpacing(qRound(2*em));
     this->setLayout(layout);
 }
 

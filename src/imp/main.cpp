@@ -24,6 +24,7 @@ int main(int argc, char *argv[]) {
     QApplication app(argc, argv);
 
     app.setStyle(new QRockyStyle);
+    app.setPalette(app.style()->standardPalette());
 
     RocaEdit::MainWindow w;
     w.showMaximized();

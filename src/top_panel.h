@@ -17,20 +17,16 @@
     see <http://www.gnu.org/licenses/>.
 */
 #pragma once
-#include <QMainWindow>
-#include <memory>
+#include <QWidget>
 
 namespace RocaEdit {
 
-class MainWindow : public QMainWindow {
+class TopPanel : public QWidget {
     Q_OBJECT
-    friend class MainWindowPrivate;
-    std::unique_ptr<class MainWindowPrivate> d;
 
 public:
-    explicit MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
-
+    explicit TopPanel(QWidget *parent = nullptr);
+    ~TopPanel();
 };
 
 }

@@ -16,21 +16,16 @@
     License along with this program.  If not,
     see <http://www.gnu.org/licenses/>.
 */
-#pragma once
-#include <QMainWindow>
-#include <memory>
+#include "../top_panel.h"
+#include <QVBoxLayout>
 
 namespace RocaEdit {
 
-class MainWindow : public QMainWindow {
-    Q_OBJECT
-    friend class MainWindowPrivate;
-    std::unique_ptr<class MainWindowPrivate> d;
+TopPanel::TopPanel(QWidget *parent) :
+    QWidget(parent) {
+}
 
-public:
-    explicit MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
-
-};
+TopPanel::~TopPanel() {
+}
 
 }

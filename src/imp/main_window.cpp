@@ -17,12 +17,26 @@
     see <http://www.gnu.org/licenses/>.
 */
 #include "../main_window.h"
+#include "../main_window_p.h"
+#include <QVBoxLayout>
 
 namespace RocaEdit {
 
 MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent) {
+    QMainWindow(parent),
+    d(new MainWindowPrivate(this)) {
+
     setWindowTitle("RocaEditor");
+
+    d->center_widget = new QWidget;
+    d->top_panel = new TopPanel;
+    d->main_splitter = new QSplitter;
+    auto layout = new QVBoxLayout;
+    layout->addWidget(d->top_panel);
+    layout->addWidget(d->main_splitter);
+    d->center_widget->setLayout(layout);
+    setCentralWidget(d->center_widget);
+    adjustSize();
 }
 
 MainWindow::~MainWindow() {

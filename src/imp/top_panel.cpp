@@ -79,15 +79,15 @@ TopPanel::TopPanel(QWidget *parent) :
     d->btn_lyric->setCheckable(true);
     d->btn_lyric->setChecked(true);
     d->btn_lyric->setCombineBorders(QRockyStyle::Combine_Right);
-    d->btn_lyric->setMinMaxSize(qRound(2*em), qRound(2*em));
+    d->btn_lyric->setMinMaxSize(qRound(3*em), qRound(2*em));
     d->btn_pitch = new QRockyButton("Pit");
     d->btn_pitch->setCheckable(true);
     d->btn_pitch->setCombineBorders(QRockyStyle::Combine_Left | QRockyStyle::Combine_Right);
-    d->btn_pitch->setMinMaxSize(qRound(2*em), qRound(2*em));
+    d->btn_pitch->setMinMaxSize(qRound(3*em), qRound(2*em));
     d->btn_timing = new QRockyButton("Tim");
     d->btn_timing->setCheckable(true);
     d->btn_timing->setCombineBorders(QRockyStyle::Combine_Left);
-    d->btn_timing->setMinMaxSize(qRound(2*em), qRound(2*em));
+    d->btn_timing->setMinMaxSize(qRound(3*em), qRound(2*em));
     auto layout = new QHBoxLayout;
     layout->setMargin(0);
     layout->setSpacing(0);

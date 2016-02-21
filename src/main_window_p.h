@@ -27,7 +27,7 @@ class MainWindowPrivate {
     friend class MainWindow;
     class MainWindow *q;
 
-    MainWindowPrivate(MainWindow *q) :
+    explicit MainWindowPrivate(MainWindow *q) :
         q(q) {
     }
 

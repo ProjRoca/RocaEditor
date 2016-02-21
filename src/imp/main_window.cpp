@@ -20,6 +20,7 @@
 #include "../main_window_p.h"
 #include <QVBoxLayout>
 #include "../side_panel.h"
+#include "../tracks_panel/tracks_panel.h"
 
 namespace RocaEdit {
 
@@ -33,7 +34,7 @@ MainWindow::MainWindow(QWidget *parent) :
     d->top_panel = new TopPanel;
     d->main_splitter = new QSplitter;
     d->main_splitter->setChildrenCollapsible(false);
-    d->main_splitter->addWidget(new SidePanel("Tracks"));
+    d->main_splitter->addWidget(new TracksPanel);
     d->main_splitter->addWidget(new QWidget);
     d->main_splitter->addWidget(new SidePanel("Notes"));
     auto layout = new QVBoxLayout;

@@ -17,41 +17,18 @@
     see <http://www.gnu.org/licenses/>.
 */
 #pragma once
-#include "top_panel.h"
-#include <QComboBox>
-#include <QHBoxLayout>
-#include <QRockyButton.h>
+#include "tracks_panel.h"
 
 namespace RocaEdit {
 
-class TopPanelPrivate {
-    friend class TopPanel;
-    class TopPanel *q;
+class TracksPanelPrivate {
+    friend class TracksPanel;
+    class TracksPanel *q;
 
-    explicit TopPanelPrivate(TopPanel *q) :
+public:
+    explicit TracksPanelPrivate(TracksPanel *q) : 
         q(q) {
     }
-
-    QRockyButton *btn_render;
-
-    QRockyButton *btn_begin;
-    QRockyButton *btn_play;
-    QRockyButton *btn_end;
-
-    QWidget *transport;
-
-    QRockyButton *btn_select;
-    QRockyButton *btn_draw;
-
-    QComboBox *cmb_quantize;
-
-    QRockyButton *btn_lyric;
-    QRockyButton *btn_pitch;
-    QRockyButton *btn_timing;
-
-    QRockyButton *btn_labels;
-    QRockyButton *btn_events;
-    QRockyButton *btn_notes;
 };
 
 }

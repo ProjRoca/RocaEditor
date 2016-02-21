@@ -18,12 +18,22 @@
 */
 #include "../tracks_panel.h"
 #include "../tracks_panel_p.h"
+#include <QVBoxLayout>
+#include "../tracks_item.h"
 
 namespace RocaEdit {
 
 TracksPanel::TracksPanel(QWidget *parent) :
     SidePanel("Tracks", parent),
     d(new TracksPanelPrivate(this)) {
+
+    auto layout = new QVBoxLayout;
+    layout->setMargin(0);
+    layout->setSpacing(0);
+    layout->addWidget(new TracksItem);
+    layout->addStretch();
+
+    this->centralWidget()->setLayout(layout);
 }
 
 TracksPanel::~TracksPanel() {

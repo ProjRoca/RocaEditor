@@ -17,20 +17,22 @@
     see <http://www.gnu.org/licenses/>.
 */
 #pragma once
-#include "tracks_panel.h"
-#include "tracks_panel_p.h"
-#include <QScrollArea>
+#include <QWidget>
+#include <memory>
 
 namespace RocaEdit {
 
-class TracksPanelPrivate {
-    friend class TracksPanel;
-    class TracksPanel *q;
+class TracksItem : public QWidget {
+    Q_OBJECT
+    friend class TracksItemPrivate;
+    std::unique_ptr<class TracksItemPrivate> d;
 
 public:
-    explicit TracksPanelPrivate(TracksPanel *q) : 
-        q(q) {
-    }
+    explicit TracksItem(QWidget *widget = nullptr);
+    ~TracksItem();
+    static QColor generateColor();
+    const QColor &color() const;
+    void setColor(const QColor &color);
 };
 
 }

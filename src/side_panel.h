@@ -16,36 +16,31 @@
     License along with this program.  If not,
     see <http://www.gnu.org/licenses/>.
 */
-#include "../main_window.h"
-#include "../main_window_p.h"
+#pragma once
+#include <QWidget>
 #include <QVBoxLayout>
-#include "../side_panel.h"
 
 namespace RocaEdit {
 
-MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
-    d(new MainWindowPrivate(this)) {
+class SidePanel : public QWidget {
+    Q_OBJECT
 
-    setWindowTitle("RocaEditor");
+public:
+    explicit SidePanel(const QString &title, QWidget *parent = nullptr);
+    ~SidePanel();
+    class PanelHeader *headerWidget() const {
+        return header;
+    }
+    QWidget *centralWidget() const {
+        return central;
+    }
+    void setHeaderWidget(class PanelHeader *header);
+    void setCentralWidget(QWidget *central);
 
-    d->center_widget = new QWidget;
-    d->top_panel = new TopPanel;
-    d->main_splitter = new QSplitter;
-    d->main_splitter->addWidget(new SidePanel("Tracks"));
-    d->main_splitter->addWidget(new QWidget);
-    d->main_splitter->addWidget(new SidePanel("Notes"));
-    auto layout = new QVBoxLayout;
-    layout->setMargin(0);
-    layout->setSpacing(0);
-    layout->addWidget(d->top_panel);
-    layout->addWidget(d->main_splitter);
-    d->center_widget->setLayout(layout);
-    this->setCentralWidget(d->center_widget);
-    this->adjustSize();
-}
-
-MainWindow::~MainWindow() {
-}
+private:
+    QVBoxLayout *layout;
+    class PanelHeader *header;
+    QWidget *central;
+};
 
 }

@@ -35,6 +35,7 @@ TopPanel::TopPanel(QWidget *parent) :
     this->setMinimumWidth(qRound(64*em));
     this->setMinimumHeight(qRound(5*em));
     this->setMaximumHeight(qRound(5*em));
+    this->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Fixed);
 
     d->btn_render = new QRockyButton(u8"\u238b");
     d->btn_render->setMinMaxSize(qRound(2.5*em), qRound(2.5*em));

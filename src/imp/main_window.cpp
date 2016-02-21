@@ -32,6 +32,7 @@ MainWindow::MainWindow(QWidget *parent) :
     d->center_widget = new QWidget;
     d->top_panel = new TopPanel;
     d->main_splitter = new QSplitter;
+    d->main_splitter->setChildrenCollapsible(false);
     d->main_splitter->addWidget(new SidePanel("Tracks"));
     d->main_splitter->addWidget(new QWidget);
     d->main_splitter->addWidget(new SidePanel("Notes"));

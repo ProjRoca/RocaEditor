@@ -103,6 +103,7 @@ TopPanel::TopPanel(QWidget *parent) :
 
     d->btn_labels = new QRockyButton(u8"\U0001f516");
     d->btn_labels->setCheckable(true);
+    d->btn_labels->setChecked(true);
     d->btn_labels->setCombineBorders(QRockyStyle::Combine_Right);
     d->btn_labels->setMinMaxSize(qRound(2.5*em), qRound(2.5*em));
     d->btn_events = new QRockyButton(u8"\u2617");

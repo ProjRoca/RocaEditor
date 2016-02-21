@@ -36,17 +36,8 @@ TopPanel::TopPanel(QWidget *parent) :
     this->setMinimumHeight(qRound(5*em));
     this->setMaximumHeight(qRound(5*em));
 
-    d->btn_tracks = new QRockyButton(u8"\u2261");
-    d->btn_tracks->setCheckable(true);
-    d->btn_tracks->setChecked(true);
-    d->btn_tracks->setMinMaxSize(qRound(2.5*em), qRound(2.5*em));
-
     d->btn_render = new QRockyButton(u8"\u238b");
-    d->btn_render->setCombineBorders(QRockyStyle::Combine_Right);
     d->btn_render->setMinMaxSize(qRound(2.5*em), qRound(2.5*em));
-    d->btn_settings = new QRockyButton(u8"\U0001f6c8");
-    d->btn_settings->setCombineBorders(QRockyStyle::Combine_Left);
-    d->btn_settings->setMinMaxSize(qRound(2.5*em), qRound(2.5*em));
 
     d->btn_begin = new QRockyButton(u8"\u23ea");
     d->btn_begin->setCombineBorders(QRockyStyle::Combine_Right);
@@ -75,7 +66,21 @@ TopPanel::TopPanel(QWidget *parent) :
     d->btn_draw->setMinMaxSize(qRound(2.5*em), qRound(2.5*em));
 
     d->cmb_quantize = new QComboBox;
+    d->cmb_quantize->addItem("OFF");
+    d->cmb_quantize->addItem("1/1");
+    d->cmb_quantize->addItem("1/2");
+    d->cmb_quantize->addItem("1/4");
+    d->cmb_quantize->addItem("1/8");
     d->cmb_quantize->addItem("1/16");
+    d->cmb_quantize->addItem("1/32");
+    d->cmb_quantize->addItem("1/64");
+    d->cmb_quantize->addItem("1/2T");
+    d->cmb_quantize->addItem("1/4T");
+    d->cmb_quantize->addItem("1/8T");
+    d->cmb_quantize->addItem("1/16T");
+    d->cmb_quantize->addItem("1/32T");
+    d->cmb_quantize->addItem("1/64T");
+    d->cmb_quantize->setCurrentIndex(5);
     d->cmb_quantize->setMinimumWidth(qRound(5*em));
     d->cmb_quantize->setMaximumWidth(qRound(5*em));
     d->cmb_quantize->setMinimumHeight(qRound(2.5*em));
@@ -97,33 +102,40 @@ TopPanel::TopPanel(QWidget *parent) :
 
     d->btn_labels = new QRockyButton(u8"\U0001f516");
     d->btn_labels->setCheckable(true);
+    d->btn_labels->setCombineBorders(QRockyStyle::Combine_Right);
     d->btn_labels->setMinMaxSize(qRound(2.5*em), qRound(2.5*em));
+    d->btn_events = new QRockyButton(u8"\u2617");
+    d->btn_events->setCheckable(true);
+    d->btn_events->setCombineBorders(QRockyStyle::Combine_Left | QRockyStyle::Combine_Right);
+    d->btn_events->setMinMaxSize(qRound(2.5*em), qRound(2.5*em));
+    d->btn_notes = new QRockyButton(u8"\u266b");
+    d->btn_notes->setCheckable(true);
+    d->btn_notes->setCombineBorders(QRockyStyle::Combine_Left);
+    d->btn_notes->setMinMaxSize(qRound(2.5*em), qRound(2.5*em));
 
     auto layout0 = new QHBoxLayout;
     layout0->addSpacing(qRound(em/2));
-    layout0->addWidget(d->btn_tracks);
-    layout0->addSpacing(qRound(em/2));
     layout0->addWidget(d->btn_render);
-    layout0->addWidget(d->btn_settings);
     layout0->addSpacing(qRound(em/2));
     layout0->addWidget(d->btn_begin);
     layout0->addWidget(d->btn_play);
     layout0->addWidget(d->btn_end);
     layout0->addSpacing(qRound(2*em));
     layout0->addWidget(d->transport);
+    layout0->addSpacing(qRound(2*em));
+    layout0->addWidget(d->btn_select);
+    layout0->addWidget(d->btn_draw);
+    layout0->addSpacing(qRound(em/2));
+    layout0->addWidget(d->cmb_quantize);
+    layout0->addSpacing(qRound(em/2));
+    layout0->addWidget(d->btn_lyric);
+    layout0->addWidget(d->btn_pitch);
+    layout0->addWidget(d->btn_timing);
 
     auto layout1 = new QHBoxLayout;
-    layout1->addSpacing(qRound(em/2));
-    layout1->addWidget(d->btn_select);
-    layout1->addWidget(d->btn_draw);
-    layout1->addSpacing(qRound(em/2));
-    layout1->addWidget(d->cmb_quantize);
-    layout1->addSpacing(qRound(em/2));
-    layout1->addWidget(d->btn_lyric);
-    layout1->addWidget(d->btn_pitch);
-    layout1->addWidget(d->btn_timing);
-    layout1->addSpacing(qRound(em/2));
     layout1->addWidget(d->btn_labels);
+    layout1->addWidget(d->btn_events);
+    layout1->addWidget(d->btn_notes);
     layout1->addSpacing(qRound(em/2));
 
     auto layout = new QHBoxLayout;
@@ -147,7 +159,7 @@ void TopPanel::paintEvent(QPaintEvent *) {
     painter.setRenderHint(QPainter::Antialiasing);
     painter.setPen(QPen(Qt::white, em*5/32));
     painter.setBrush(QColor(0x5c, 0x85, 0x83));
-    painter.drawRoundedRect(QRectF(19*em, em, 16*em, 3*em), em/4, em/4);
+    painter.drawRoundedRect(QRectF(d->transport->geometry()), em/4, em/4);
 }
 
 }

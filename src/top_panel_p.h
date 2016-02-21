@@ -32,10 +32,7 @@ class TopPanelPrivate {
         q(q) {
     }
 
-    QRockyButton *btn_tracks;
-
     QRockyButton *btn_render;
-    QRockyButton *btn_settings;
 
     QRockyButton *btn_begin;
     QRockyButton *btn_play;
@@ -53,6 +50,8 @@ class TopPanelPrivate {
     QRockyButton *btn_timing;
 
     QRockyButton *btn_labels;
+    QRockyButton *btn_events;
+    QRockyButton *btn_notes;
 };
 
 }

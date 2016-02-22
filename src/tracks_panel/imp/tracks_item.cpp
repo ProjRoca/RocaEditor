@@ -49,7 +49,7 @@ TracksItem::TracksItem(QWidget *widget) :
     d->lbl_color->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Minimum);
 
     d->lbl_artwork = new QLabel;
-    auto pxm_artwork = QIcon::fromTheme("face-smile").pixmap(qRound(4*em), qRound(4*em));
+    auto pxm_artwork = QIcon(":/Roca.svg").pixmap(qRound(4*em), qRound(4*em));
     d->lbl_artwork->setPixmap(pxm_artwork);
     d->lbl_artwork->setMinimumSize(qRound(4*em), qRound(4*em));
     d->lbl_artwork->setMaximumSize(qRound(4*em), qRound(4*em));

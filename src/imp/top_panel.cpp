@@ -153,10 +153,7 @@ TopPanel::~TopPanel() {
 }
 
 void TopPanel::paintEvent(QPaintEvent *) {
-    QStyleOption option;
-    option.initFrom(this);
     QPainter painter(this);
-    QRockyStyle().drawPrimitive(QStyle::PE_Widget, &option, &painter, this);
     auto em = QRockyStyle::em(this);
     painter.setRenderHint(QPainter::Antialiasing);
     painter.setPen(QPen(Qt::white, em*5/32));

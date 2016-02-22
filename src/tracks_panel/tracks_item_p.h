@@ -34,6 +34,7 @@ public:
 
 private:
     QColor track_color;
+    QWidget *lbl_color;
     QLabel *lbl_artwork;
     QLabel *lbl_trackname;
     QLabel *lbl_sfname;

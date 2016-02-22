@@ -19,6 +19,7 @@
 #include "../tracks_item.h"
 #include "../tracks_item_p.h"
 #include <QHBoxLayout>
+#include <QPainter>
 #include <QPalette>
 #include <QVBoxLayout>
 #include <algorithm>
@@ -38,7 +39,14 @@ TracksItem::TracksItem(QWidget *widget) :
     palette.setColor(QPalette::WindowText, palette.brightText().color());
     this->setPalette(palette);
 
+    d->lbl_color = new QWidget;
+    d->lbl_color->setMinimumWidth(qRound(em));
+    d->lbl_color->setMaximumWidth(qRound(em));
+    d->lbl_color->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Minimum);
+
     d->lbl_artwork = new QLabel;
+    auto pxm_artwork = QIcon::fromTheme("face-smile").pixmap(qRound(4*em), qRound(4*em));
+    d->lbl_artwork->setPixmap(pxm_artwork);
     d->lbl_artwork->setMinimumSize(qRound(4*em), qRound(4*em));
     d->lbl_artwork->setMaximumSize(qRound(4*em), qRound(4*em));
 
@@ -61,11 +69,11 @@ TracksItem::TracksItem(QWidget *widget) :
     d->btn_mute = new QRockyButton("M");
     d->btn_mute->setCheckable(true);
     d->btn_mute->setCombineBorders(QRockyStyle::Combine_Right);
-    d->btn_mute->setMinMaxSize(qRound(2*em), qRound(2*em));
+    d->btn_mute->setMinMaxSize(qRound(1.5*em), qRound(1.5*em));
     d->btn_solo = new QRockyButton("S");
     d->btn_solo->setCheckable(true);
     d->btn_solo->setCombineBorders(QRockyStyle::Combine_Left);
-    d->btn_solo->setMinMaxSize(qRound(2*em), qRound(2*em));
+    d->btn_solo->setMinMaxSize(qRound(1.5*em), qRound(1.5*em));
 
     d->sld_volume = new QSlider;
     d->sld_volume->setMinimumWidth(qRound(5*em));
@@ -78,12 +86,14 @@ TracksItem::TracksItem(QWidget *widget) :
 
     auto layout1 = new QHBoxLayout;
     layout1->addWidget(d->lbl_artwork);
+    layout1->addSpacing(qRound(em));
     layout1->addLayout(layout0);
 
     auto layout2 = new QHBoxLayout;
+    layout2->addSpacing(qRound(em/2));
     layout2->addWidget(d->btn_mute);
     layout2->addWidget(d->btn_solo);
-    layout2->addSpacing(qRound(em));
+    layout2->addSpacing(qRound(1.5*em));
     layout2->addWidget(d->sld_volume);
     layout2->addSpacing(qRound(em));
 
@@ -96,7 +106,7 @@ TracksItem::TracksItem(QWidget *widget) :
     auto layout = new QHBoxLayout;
     layout->setMargin(0);
     layout->setSpacing(0);
-    layout->addSpacing(qRound(em*2));
+    layout->addWidget(d->lbl_color);
     layout->addLayout(layout3);
 
     this->setLayout(layout);
@@ -107,12 +117,24 @@ TracksItem::TracksItem(QWidget *widget) :
 TracksItem::~TracksItem() {
 }
 
+void TracksItem::paintEvent(QPaintEvent *) {
+    QPainter painter(this);
+    painter.setRenderHint(QPainter::Antialiasing);
+    painter.setPen(Qt::NoPen);
+    painter.setBrush(QBrush(d->track_color));
+    painter.drawRect(QRectF(d->lbl_color->geometry()));
+}
+
 QColor TracksItem::generateColor() {
     std::random_device rd;
     std::default_random_engine re(rd());
-    std::uniform_real_distribution<qreal> udist(0, 1);
-    std::normal_distribution<qreal> ndist(0.5, 1/12.0);
-    return QColor::fromHslF(udist(re), udist(re), std::max<qreal>(std::min<qreal>(ndist(re), 0.75), 0.25)).toRgb();
+    std::uniform_real_distribution<qreal> hdist(0, 1);
+    std::normal_distribution<qreal> sdist(1/3.0, 1/24.0);
+    std::normal_distribution<qreal> ldist(0.5, 1/12.0);
+    qreal h = hdist(re);
+    qreal s = std::max<qreal>(std::min<qreal>(sdist(re), 5.0/24), 11.0/24);
+    qreal l = std::max<qreal>(std::min<qreal>(ldist(re), 0.75), 0.25);
+    return QColor::fromHslF(h, s, l).toRgb();
 }
 
 const QColor &TracksItem::color() const {

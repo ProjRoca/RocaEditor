@@ -33,6 +33,7 @@ public:
     static QColor generateColor();
     const QColor &color() const;
     void setColor(const QColor &color);
+    void paintEvent(QPaintEvent *event);
 };
 
 }

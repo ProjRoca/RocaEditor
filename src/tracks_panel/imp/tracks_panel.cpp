@@ -20,6 +20,7 @@
 #include "../tracks_panel_p.h"
 #include <QScrollArea>
 #include <QVBoxLayout>
+#include "../tracks_bus.h"
 #include "../tracks_item.h"
 
 namespace RocaEdit {
@@ -28,6 +29,7 @@ TracksPanel::TracksPanel(QWidget *parent) :
     SidePanel("Tracks", parent),
     d(new TracksPanelPrivate(this)) {
 
+    d->tracks_bus = new TracksBus;
     d->tracks_list = new QWidget;
 
     auto layout0 = new QVBoxLayout;
@@ -47,6 +49,7 @@ TracksPanel::TracksPanel(QWidget *parent) :
     auto layout = new QVBoxLayout;
     layout->setMargin(0);
     layout->setSpacing(0);
+    layout->addWidget(d->tracks_bus);
     layout->addWidget(scroll_area);
 
     this->centralWidget()->setLayout(layout);

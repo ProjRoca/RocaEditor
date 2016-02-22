@@ -17,24 +17,26 @@
     see <http://www.gnu.org/licenses/>.
 */
 #pragma once
-#include "tracks_panel.h"
-#include "tracks_panel_p.h"
-#include <QWidget>
+#include <QLabel>
+#include <QRockyButton.h>
+#include <QSlider>
 
 namespace RocaEdit {
 
-class TracksPanelPrivate {
-    friend class TracksPanel;
-    class TracksPanel *q;
+class TracksBusPrivate {
+    friend class TracksBus;
+    class TracksBus *q;
 
 public:
-    explicit TracksPanelPrivate(TracksPanel *q) : 
+    explicit TracksBusPrivate(TracksBus *q) :
         q(q) {
     }
 
 private:
-    class TracksBus *tracks_bus;
-    QWidget *tracks_list;
+    QRockyButton *btn_mute;
+    QRockyButton *btn_render;
+    QSlider *sld_volume;
+    QLabel *lbl_volume;
 };
 
 }

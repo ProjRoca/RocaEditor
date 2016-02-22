@@ -34,6 +34,9 @@ public:
     const QColor &color() const;
     void setColor(const QColor &color);
     void paintEvent(QPaintEvent *event);
+
+private slots:
+    void onVolumeChange(int value);
 };
 
 }

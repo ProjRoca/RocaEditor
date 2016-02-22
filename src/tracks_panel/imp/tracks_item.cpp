@@ -23,6 +23,7 @@
 #include <QPalette>
 #include <QVBoxLayout>
 #include <algorithm>
+#include <cmath>
 #include <random>
 #include <QRockyStyle.h>
 
@@ -79,12 +80,15 @@ TracksItem::TracksItem(QWidget *widget) :
     d->btn_solo->setPalette(palette);
 
     d->sld_volume = new QSlider;
-    d->sld_volume->setMinimum(-90*1024);
-    d->sld_volume->setMaximum(0);
+    d->sld_volume->setMinimum(0);
+    d->sld_volume->setMaximum(65536);
+    d->sld_volume->setValue(65536);
     d->sld_volume->setMinimumWidth(qRound(7*em));
     d->sld_volume->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Minimum);
     d->sld_volume->setOrientation(Qt::Horizontal);
-    d->lbl_volume = new QLabel("0 dB");
+    this->connect(d->sld_volume, &QSlider::valueChanged, this, &TracksItem::onVolumeChange);
+    d->lbl_volume = new QLabel("0.0 dB");
+    d->lbl_volume->setMinimumWidth(qRound(4.5*em));
     d->lbl_volume->setPalette(palette);
 
     auto layout0 = new QVBoxLayout;
@@ -104,7 +108,6 @@ TracksItem::TracksItem(QWidget *widget) :
     layout2->addWidget(d->sld_volume);
     layout2->addSpacing(qRound(em/2));
     layout2->addWidget(d->lbl_volume);
-    layout2->addSpacing(qRound(em));
 
     auto layout3 = new QVBoxLayout;
     layout3->addSpacing(qRound(em/8));
@@ -156,6 +159,16 @@ const QColor &TracksItem::color() const {
 void TracksItem::setColor(const QColor &color) {
     d->track_color = color;
     this->update();
+}
+
+void TracksItem::onVolumeChange(int value) {
+    int vol = value;
+    if(vol != 0) {
+        double vol_db = std::log10(double(value) / d->sld_volume->maximum())*20;
+        d->lbl_volume->setText(QString("%1 dB").arg(vol_db, 0, 'f', 1));
+    } else {
+        d->lbl_volume->setText(u8"-\u221e dB");
+    }
 }
 
 }

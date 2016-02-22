@@ -78,9 +78,9 @@ TracksBus::TracksBus(QWidget *widget) :
     auto layout = new QVBoxLayout;
     layout->setMargin(0);
     layout->setSpacing(0);
-    layout->addSpacing(qRound(em/4));
+    layout->addSpacing(qRound(em));
     layout->addLayout(layout0);
-    layout->addSpacing(qRound(em/4));
+    layout->addSpacing(qRound(em));
 
     this->setLayout(layout);
 }

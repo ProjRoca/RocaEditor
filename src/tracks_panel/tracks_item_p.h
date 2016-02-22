@@ -41,6 +41,7 @@ private:
     QRockyButton *btn_mute;
     QRockyButton *btn_solo;
     QSlider *sld_volume;
+    QLabel *lbl_volume;
 };
 
 }

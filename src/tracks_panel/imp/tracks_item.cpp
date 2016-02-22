@@ -37,6 +37,9 @@ TracksItem::TracksItem(QWidget *widget) :
     QPalette palette(this->palette());
     palette.setColor(QPalette::Window, palette.alternateBase().color());
     palette.setColor(QPalette::WindowText, palette.brightText().color());
+    palette.setColor(QPalette::Button, palette.alternateBase().color());
+    palette.setColor(QPalette::ButtonText, QColor(0x33, 0x33, 0x33));
+    palette.setColor(QPalette::Light, QColor(0x33, 0x33, 0x33));
     this->setPalette(palette);
 
     d->lbl_color = new QWidget;
@@ -59,26 +62,30 @@ TracksItem::TracksItem(QWidget *widget) :
     }
     d->lbl_trackname->setFont(font1_5x);
     d->lbl_trackname->setPalette(palette);
-    d->lbl_trackname->setMinimumWidth(0);
-    d->lbl_trackname->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Minimum);
-    d->lbl_sfname = new QLabel("Roca IcySnowy 0.1.0");
+    d->lbl_trackname->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Fixed);
+    d->lbl_sfname = new QLabel("Roca IcySnowy 0.1.0alpha");
     d->lbl_sfname->setPalette(palette);
-    d->lbl_sfname->setMinimumWidth(0);
-    d->lbl_sfname->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Minimum);
+    d->lbl_sfname->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Fixed);
 
     d->btn_mute = new QRockyButton("M");
     d->btn_mute->setCheckable(true);
     d->btn_mute->setCombineBorders(QRockyStyle::Combine_Right);
     d->btn_mute->setMinMaxSize(qRound(1.5*em), qRound(1.5*em));
+    d->btn_mute->setPalette(palette);
     d->btn_solo = new QRockyButton("S");
     d->btn_solo->setCheckable(true);
     d->btn_solo->setCombineBorders(QRockyStyle::Combine_Left);
     d->btn_solo->setMinMaxSize(qRound(1.5*em), qRound(1.5*em));
+    d->btn_solo->setPalette(palette);
 
     d->sld_volume = new QSlider;
-    d->sld_volume->setMinimumWidth(qRound(5*em));
+    d->sld_volume->setMinimum(-90*1024);
+    d->sld_volume->setMaximum(0);
+    d->sld_volume->setMinimumWidth(qRound(7*em));
     d->sld_volume->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Minimum);
     d->sld_volume->setOrientation(Qt::Horizontal);
+    d->lbl_volume = new QLabel("0 dB");
+    d->lbl_volume->setPalette(palette);
 
     auto layout0 = new QVBoxLayout;
     layout0->addWidget(d->lbl_trackname);
@@ -95,10 +102,12 @@ TracksItem::TracksItem(QWidget *widget) :
     layout2->addWidget(d->btn_solo);
     layout2->addSpacing(qRound(1.5*em));
     layout2->addWidget(d->sld_volume);
+    layout2->addSpacing(qRound(em/2));
+    layout2->addWidget(d->lbl_volume);
     layout2->addSpacing(qRound(em));
 
     auto layout3 = new QVBoxLayout;
-    layout3->addSpacing(qRound(em/2));
+    layout3->addSpacing(qRound(em/8));
     layout3->addLayout(layout1);
     layout3->addLayout(layout2);
     layout3->addSpacing(qRound(em/2));
@@ -118,11 +127,14 @@ TracksItem::~TracksItem() {
 }
 
 void TracksItem::paintEvent(QPaintEvent *) {
+    auto  em = QRockyStyle::em(this);
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing);
     painter.setPen(Qt::NoPen);
     painter.setBrush(QBrush(d->track_color));
     painter.drawRect(QRectF(d->lbl_color->geometry()));
+    painter.setBrush(QBrush(QColor(0x26, 0x2d, 0x33)));
+    painter.drawRect(QRectF(0, 0, this->geometry().width(), em/8));
 }
 
 QColor TracksItem::generateColor() {

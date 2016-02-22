@@ -31,6 +31,8 @@ TracksPanel::TracksPanel(QWidget *parent) :
     layout->setMargin(0);
     layout->setSpacing(0);
     layout->addWidget(new TracksItem);
+    layout->addWidget(new TracksItem);
+    layout->addWidget(new TracksItem);
     layout->addStretch();
 
     this->centralWidget()->setLayout(layout);

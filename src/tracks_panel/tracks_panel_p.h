@@ -19,7 +19,7 @@
 #pragma once
 #include "tracks_panel.h"
 #include "tracks_panel_p.h"
-#include <QScrollArea>
+#include <QWidget>
 
 namespace RocaEdit {
 
@@ -31,6 +31,9 @@ public:
     explicit TracksPanelPrivate(TracksPanel *q) : 
         q(q) {
     }
+
+private:
+    QWidget *tracks_list;
 };
 
 }

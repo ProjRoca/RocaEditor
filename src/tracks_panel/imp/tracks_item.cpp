@@ -110,10 +110,11 @@ TracksItem::TracksItem(QWidget *widget) :
     layout2->addWidget(d->lbl_volume);
 
     auto layout3 = new QVBoxLayout;
-    layout3->addSpacing(qRound(em/8));
+    layout3->addSpacing(qRound(em/16));
     layout3->addLayout(layout1);
+    layout3->addSpacing(qRound(em/4));
     layout3->addLayout(layout2);
-    layout3->addSpacing(qRound(em/2));
+    layout3->addSpacing(qRound(em/4 + em/16));
 
     auto layout = new QHBoxLayout;
     layout->setMargin(0);
@@ -137,7 +138,8 @@ void TracksItem::paintEvent(QPaintEvent *) {
     painter.setBrush(QBrush(d->track_color));
     painter.drawRect(QRectF(d->lbl_color->geometry()));
     painter.setBrush(QBrush(QColor(0x26, 0x2d, 0x33)));
-    painter.drawRect(QRectF(0, 0, this->geometry().width(), em/8));
+    painter.drawRect(QRectF(0, 0, this->geometry().width(), em/16));
+    painter.drawRect(QRectF(0, this->geometry().height()-em/16, this->geometry().width(), em/16));
 }
 
 QColor TracksItem::generateColor() {

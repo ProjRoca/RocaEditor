@@ -16,16 +16,27 @@
     License along with this program.  If not,
     see <http://www.gnu.org/licenses/>.
 */
+#include <QtPlugin>
 #include <QApplication>
 #include <QFont>
 #include <QRockyStyle.h>
 #include "../main_window.h"
+
+#ifdef _WIN32
+Q_IMPORT_PLUGIN(QWindowsIntegrationPlugin)
+#endif
 
 int main(int argc, char *argv[]) {
     QApplication app(argc, argv);
 
     app.setStyle(new QRockyStyle);
     app.setPalette(app.style()->standardPalette());
+    {
+        QFont font(app.font());
+        font.setHintingPreference(QFont::PreferNoHinting);
+        font.setStyleHint(QFont::System, QFont::StyleStrategy(QFont::ForceOutline | QFont::PreferAntialias));
+        app.setFont(font);
+    }
 
     RocaEdit::MainWindow w;
     w.showMaximized();

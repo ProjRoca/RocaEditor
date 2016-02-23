@@ -19,6 +19,8 @@
 #pragma once
 #include <QtPlugin>
 
+#ifdef QT_STATICPLUGIN
+
 #if defined(Q_OS_WIN)
 Q_IMPORT_PLUGIN(QWindowsIntegrationPlugin)
 #elif defined(Q_OS_DARWIN)
@@ -30,3 +32,12 @@ Q_IMPORT_PLUGIN(QIbusPlatformInputContextPlugin)
 Q_IMPORT_PLUGIN(QComposePlatformInputContextPlugin)
 #endif
 
+Q_IMPORT_PLUGIN(QGifPlugin)
+Q_IMPORT_PLUGIN(QICNSPlugin)
+Q_IMPORT_PLUGIN(QICOPlugin)
+Q_IMPORT_PLUGIN(QJpegPlugin)
+Q_IMPORT_PLUGIN(QSvgPlugin)
+Q_IMPORT_PLUGIN(QSvgIconPlugin)
+Q_IMPORT_PLUGIN(QWebpPlugin)
+
+#endif

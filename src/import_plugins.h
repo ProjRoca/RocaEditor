@@ -32,7 +32,6 @@ Q_IMPORT_PLUGIN(QIbusPlatformInputContextPlugin)
 Q_IMPORT_PLUGIN(QComposePlatformInputContextPlugin)
 #endif
 
-Q_IMPORT_PLUGIN(QGifPlugin)
 Q_IMPORT_PLUGIN(QICNSPlugin)
 Q_IMPORT_PLUGIN(QICOPlugin)
 Q_IMPORT_PLUGIN(QJpegPlugin)

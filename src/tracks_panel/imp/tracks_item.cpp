@@ -143,7 +143,7 @@ void TracksItem::paintEvent(QPaintEvent *) {
 }
 
 QColor TracksItem::generateColor() {
-    std::random_device rd;
+    static std::random_device rd;
     std::default_random_engine re(rd());
     std::uniform_real_distribution<qreal> hdist(0, 1);
     std::normal_distribution<qreal> sdist(1/3.0, 1/24.0);

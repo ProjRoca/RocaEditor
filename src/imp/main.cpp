@@ -17,6 +17,7 @@
     see <http://www.gnu.org/licenses/>.
 */
 #include <QApplication>
+#include <QFont>
 #include <QRockyStyle.h>
 #include "../main_window.h"
 

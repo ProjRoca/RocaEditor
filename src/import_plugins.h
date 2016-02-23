@@ -19,11 +19,11 @@
 #pragma once
 #include <QtPlugin>
 
-#if defined(Q_WS_WIN)
+#if defined(Q_OS_WIN)
 Q_IMPORT_PLUGIN(QWindowsIntegrationPlugin)
-#elif defined(Q_WS_MAC)
+#elif defined(Q_OS_DARWIN)
 Q_IMPORT_PLUGIN(QCocoaIntegrationPlugin)
-#elif defined(Q_WS_X11)
+#else
 Q_IMPORT_PLUGIN(QXcbIntegrationPlugin)
 Q_IMPORT_PLUGIN(QWaylandIntegrationPlugin)
 Q_IMPORT_PLUGIN(QIbusPlatformInputContextPlugin)

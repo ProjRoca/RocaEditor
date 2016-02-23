@@ -11,6 +11,8 @@ set_target_properties(RocaEditor PROPERTIES
 
 find_package(Qt5Widgets)
 target_link_libraries(RocaEditor PUBLIC Qt5::Widgets)
+find_package(Qt5Svg)
+target_link_libraries(RocaEditor PUBLIC Qt5::Svg)
 
 add_subdirectory(lib/QRockyStyle)
 target_link_libraries(RocaEditor PUBLIC QRockyStyle_s)

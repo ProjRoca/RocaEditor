@@ -16,26 +16,17 @@
     License along with this program.  If not,
     see <http://www.gnu.org/licenses/>.
 */
-#include "../import_plugins.h"
-#include <QApplication>
-#include <QFont>
-#include <QRockyStyle.h>
-#include "../main_window.h"
+#pragma once
+#include <QtPlugin>
 
-int main(int argc, char *argv[]) {
-    QApplication app(argc, argv);
+#if defined(Q_WS_WIN)
+Q_IMPORT_PLUGIN(QWindowsIntegrationPlugin)
+#elif defined(Q_WS_MAC)
+Q_IMPORT_PLUGIN(QCocoaIntegrationPlugin)
+#elif defined(Q_WS_X11)
+Q_IMPORT_PLUGIN(QXcbIntegrationPlugin)
+Q_IMPORT_PLUGIN(QWaylandIntegrationPlugin)
+Q_IMPORT_PLUGIN(QIbusPlatformInputContextPlugin)
+Q_IMPORT_PLUGIN(QComposePlatformInputContextPlugin)
+#endif
 
-    app.setStyle(new QRockyStyle);
-    app.setPalette(app.style()->standardPalette());
-    {
-        QFont font(app.font());
-        font.setHintingPreference(QFont::PreferNoHinting);
-        font.setStyleHint(QFont::System, QFont::StyleStrategy(QFont::ForceOutline | QFont::PreferAntialias));
-        app.setFont(font);
-    }
-
-    RocaEdit::MainWindow w;
-    w.showMaximized();
-
-    return app.exec();
-}

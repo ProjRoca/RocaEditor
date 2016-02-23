@@ -18,6 +18,7 @@
 */
 #include "../top_panel.h"
 #include "../top_panel_p.h"
+#include <QButtonGroup>
 #include <QHBoxLayout>
 #include <QPainter>
 #include <QStyle>
@@ -65,6 +66,10 @@ TopPanel::TopPanel(QWidget *parent) :
     d->btn_draw->setCheckable(true);
     d->btn_draw->setCombineBorders(QRockyStyle::Combine_Left);
     d->btn_draw->setMinMaxSize(qRound(2.5*em), qRound(2.5*em));
+    auto btngrp_drawmode = new QButtonGroup(this);
+    btngrp_drawmode->addButton(d->btn_select);
+    btngrp_drawmode->addButton(d->btn_draw);
+    btngrp_drawmode->setExclusive(true);
 
     d->cmb_quantize = new QComboBox;
     d->cmb_quantize->addItem("OFF");
@@ -100,6 +105,11 @@ TopPanel::TopPanel(QWidget *parent) :
     d->btn_timing->setCheckable(true);
     d->btn_timing->setCombineBorders(QRockyStyle::Combine_Left);
     d->btn_timing->setMinMaxSize(qRound(4.5*em), qRound(2.5*em));
+    auto btngrp_editlayer = new QButtonGroup(this);
+    btngrp_editlayer->addButton(d->btn_lyric);
+    btngrp_editlayer->addButton(d->btn_pitch);
+    btngrp_editlayer->addButton(d->btn_timing);
+    btngrp_editlayer->setExclusive(true);
 
     d->btn_labels = new QRockyButton(u8"\U0001f516");
     d->btn_labels->setCheckable(true);
@@ -114,6 +124,11 @@ TopPanel::TopPanel(QWidget *parent) :
     d->btn_notes->setCheckable(true);
     d->btn_notes->setCombineBorders(QRockyStyle::Combine_Left);
     d->btn_notes->setMinMaxSize(qRound(2.5*em), qRound(2.5*em));
+    auto btngrp_rightpanel = new QButtonGroup(this);
+    btngrp_rightpanel->addButton(d->btn_labels);
+    btngrp_rightpanel->addButton(d->btn_events);
+    btngrp_rightpanel->addButton(d->btn_notes);
+    btngrp_rightpanel->setExclusive(true);
 
     auto layout0 = new QHBoxLayout;
     layout0->addSpacing(qRound(em/2));
